@@ -1,0 +1,24 @@
+<main>
+    <div class="container body-content">
+        <div class="row">
+            <th:block th:each="recipe : ${recipes}">
+                <div class="col-md-6">
+                    <article>
+                        <header>
+                            <h2 th:text="${recipe.title}"></h2>
+                        </header>
+
+                        <small class="author" th:text="${recipe.author.fullName}"></small>
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   th:href="@{/recipe/{id}(id=${recipe.id})}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
