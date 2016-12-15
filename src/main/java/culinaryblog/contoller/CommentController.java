@@ -14,9 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -32,13 +30,9 @@ public class CommentController {
     private RecipeRepository recipeRepository;
 
 
-    @GetMapping("/details/{id}")
+    @GetMapping("/comment/create")
     @PreAuthorize("isAuthenticated()")
-    public String create(Model model, @PathVariable Integer id, CommentBindingModel commentBindingModel){
-
-        Recipe recipeId = this.recipeRepository.findOne(id);
-
-        createProcess(commentBindingModel, recipeId);
+    public String create(Model model){
 
         model.addAttribute("view", "comment/create");
 
@@ -46,9 +40,9 @@ public class CommentController {
 
     }
 
-    @PostMapping("/recipe/details/")
+    @PostMapping("/comment/create")
     @PreAuthorize("isAuthenticated()")
-    public String createProcess(CommentBindingModel commentBindingModel, Recipe recipeId){
+    public String createProcess(CommentBindingModel commentBindingModel){
 
         UserDetails user = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
@@ -56,11 +50,9 @@ public class CommentController {
         User userEntity = this.userRepository.findByEmail(user.getUsername());
 
 
-
         Comment commentEntity = new Comment(
                 commentBindingModel.getContent(),
-                userEntity,
-                recipeId
+                userEntity
         );
 
 
@@ -69,8 +61,6 @@ public class CommentController {
         return "redirect:/";
 
     }
-
-
 
 
 

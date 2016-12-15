@@ -12,13 +12,14 @@ public class Comment {
 
     private User author;
 
-    private Recipe recipe;
 
 
-    public Comment(String content, User author, Recipe recipe) {
+
+
+
+    public Comment(String content, User author) {
         this.content = content;
         this.author = author;
-        this.recipe = recipe;
 
     }
 
@@ -54,19 +55,11 @@ public class Comment {
         this.author = author;
     }
 
-    @ManyToOne()
-    @JoinColumn(nullable = false, name = "authorId")
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
     @Transient
     public String getSummery(){
+
         return this.getContent();
+
     }
 
 }
