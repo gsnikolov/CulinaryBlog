@@ -2,6 +2,7 @@ package culinaryblog.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -97,6 +98,25 @@ public class User {
     @OneToMany(mappedBy = "author")
     public Set<Comment> getComments() {
         return comments;
+    }
+
+    @Transient
+    public boolean isAdmin(){
+        return this.getRoles()
+                .stream()
+                .anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+    }
+
+    @Transient
+    public boolean isAuthor(Recipe recipe){
+        return Objects.equals(this.getId(), recipe.getAuthor().getId());
+
+    }
+
+    @Transient
+    public boolean isAuthorComment(Comment comment){
+        return Objects.equals(this.getId(), comment.getAuthor().getId());
+
     }
 
     public void setComments(Set<Comment> comments) {

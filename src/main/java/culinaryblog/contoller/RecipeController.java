@@ -11,6 +11,7 @@ import culinaryblog.repository.RecipeRepository;
 import culinaryblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -72,6 +73,17 @@ public class RecipeController {
             return "redirect:/";
         }
 
+        if (!(SecurityContextHolder.getContext().getAuthentication()
+                     instanceof AnonymousAuthenticationToken)){
+
+            UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
+                    .getAuthentication().getPrincipal();
+
+            User entityUser = this.userRepository.findByEmail(principal.getUsername());
+
+            model.addAttribute("user", entityUser);
+        }
+
         Recipe recipe = this.recipeRepository.findOne(id);
 
         List<Comment> allComments = this.commentRepository.findAll();
@@ -102,7 +114,14 @@ public class RecipeController {
             return "redirect:/";
         }
 
+
         Recipe recipe = this.recipeRepository.findOne(id);
+
+        if (!isUserAuthorOrAdmin(recipe)){
+
+            return "redirect:/recipe/" + id;
+
+        }
 
         model.addAttribute("recipe", recipe);
         model.addAttribute("view", "recipe/edit");
@@ -120,6 +139,12 @@ public class RecipeController {
         }
 
         Recipe recipe = this.recipeRepository.findOne(id);
+
+        if (!isUserAuthorOrAdmin(recipe)){
+
+            return "redirect:/recipe/" + id;
+
+        }
 
         recipe.setContent(recipeBindingModel.getContent());
         recipe.setTitle(recipeBindingModel.getTitle());
@@ -140,6 +165,12 @@ public class RecipeController {
 
         Recipe recipe = this.recipeRepository.findOne(id);
 
+        if (!isUserAuthorOrAdmin(recipe)){
+
+            return "redirect:/recipe/" + id;
+
+        }
+
         model.addAttribute("recipe", recipe);
         model.addAttribute("view", "recipe/delete");
 
@@ -154,7 +185,14 @@ public class RecipeController {
             return "redirect:/";
         }
 
+
         Recipe recipe = this.recipeRepository.findOne(id);
+
+        if (!isUserAuthorOrAdmin(recipe)){
+
+            return "redirect:/recipe/" + id;
+
+        }
 
         this.recipeRepository.delete(recipe);
 
@@ -217,6 +255,12 @@ public class RecipeController {
 
         Comment comment = commentRepository.findOne(id);
 
+        if (!isUserAuthorOrAdminComments(comment)){
+
+            return "redirect:/recipe/" + id;
+
+        }
+
         model.addAttribute("comment", comment);
         model.addAttribute("view", "recipe/editComment");
 
@@ -232,6 +276,12 @@ public class RecipeController {
         }
 
         Comment comment = this.commentRepository.findOne(id);
+
+        if (!isUserAuthorOrAdminComments(comment)){
+
+            return "redirect:/recipe/" + id;
+
+        }
 
         comment.setContent(commentBindingModel.getContent());
 
@@ -251,6 +301,12 @@ public class RecipeController {
 
         Comment comment = commentRepository.findOne(id);
 
+        if (!isUserAuthorOrAdminComments(comment)){
+
+            return "redirect:/recipe/" + id;
+
+        }
+
         model.addAttribute("comment", comment);
         model.addAttribute("view", "recipe/deleteComment");
 
@@ -267,9 +323,37 @@ public class RecipeController {
 
         Comment comment = commentRepository.findOne(id);
 
+        if (!isUserAuthorOrAdminComments(comment)){
+
+            return "redirect:/recipe/" + id;
+
+        }
+
         this.commentRepository.delete(comment);
 
         return "redirect:/";
+    }
+
+    private  boolean isUserAuthorOrAdmin(Recipe recipe){
+
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User userEntity = this.userRepository.findByEmail(user.getUsername());
+
+        return userEntity.isAdmin() || userEntity.isAuthor(recipe);
+
+    }
+
+    private  boolean isUserAuthorOrAdminComments(Comment comment){
+
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User userEntity = this.userRepository.findByEmail(user.getUsername());
+
+        return userEntity.isAdmin() || userEntity.isAuthorComment(comment);
+
     }
 
 

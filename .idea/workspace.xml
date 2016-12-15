@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc44571e-219c-493e-b6a8-688b7519bc7f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/recipe/deleteComment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/recipe/editComment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/culinaryblog/bindigModel/CommentBindingModel.java" afterPath="$PROJECT_DIR$/src/main/java/culinaryblog/bindigModel/CommentBindingModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java" afterPath="$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/culinaryblog/entity/Role.java" afterPath="$PROJECT_DIR$/src/main/java/culinaryblog/entity/Role.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/recipe/details.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/recipe/details.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,21 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="details.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recipe/details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecipeController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RecipeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="260" column="38" lean-forward="false" selection-start-line="260" selection-start-column="38" selection-end-line="260" selection-end-column="38" />
+            <state relative-caret-position="544">
+              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="method#create#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#createProcess#0;class#RecipeController#0" expanded="false" />
@@ -49,11 +37,15 @@
                 <element signature="method#edit#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#editProcess#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#delete#0;class#RecipeController#0" expanded="false" />
+                <element signature="method#deleteProcess#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#comment#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#commentProcess#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#editComment#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#editCommentProcess#0;class#RecipeController#0" expanded="false" />
                 <element signature="method#deleteComment#0;class#RecipeController#0" expanded="false" />
+                <element signature="method#deleteCommentProcess#0;class#RecipeController#0" expanded="false" />
+                <element signature="method#isUserAuthorOrAdmin#0;class#RecipeController#0" expanded="false" />
+                <element signature="method#isUserAuthorOrAdminComments#0;class#RecipeController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -89,7 +81,6 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/bindigModel/UserBindingModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/culinaryblog/entity/Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/config/BlogUserDetails.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/config/WebSeurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/service/BlogUserDetailsService.java" />
@@ -108,7 +99,6 @@
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/contoller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/contoller/FileController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/recipe/delete.html" />
-        <option value="$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/repository/CommentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/home/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/repository/UserRepository.java" />
@@ -127,6 +117,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/recipe/editComment.html" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/bindigModel/CommentBindingModel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/recipe/deleteComment.html" />
+        <option value="$PROJECT_DIR$/src/main/java/culinaryblog/entity/Role.java" />
+        <option value="$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/recipe/details.html" />
       </list>
@@ -169,8 +161,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -917,11 +909,12 @@
       <workItem from="1481756031186" duration="10083000" />
       <workItem from="1481809052317" duration="4980000" />
       <workItem from="1481814160818" duration="4663000" />
+      <workItem from="1481820186155" duration="3973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76435000" />
+    <option name="totallyTimeSpent" value="80408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -945,7 +938,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36750787" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -968,7 +961,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -977,11 +970,42 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recipe/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4420">
+          <caret line="260" column="38" lean-forward="false" selection-start-line="260" selection-start-column="38" selection-end-line="260" selection-end-column="38" />
+          <folding>
+            <element signature="method#create#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#createProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#details#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#edit#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#editProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#delete#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#comment#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#commentProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#editComment#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#editCommentProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteComment#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteCommentProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdmin#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdminComments#0;class#RecipeController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1012,11 +1036,15 @@
             <element signature="method#edit#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#delete#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#comment#0;class#RecipeController#0" expanded="false" />
             <element signature="method#commentProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editComment#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editCommentProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#deleteComment#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteCommentProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdmin#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdminComments#0;class#RecipeController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1032,7 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="98" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,14 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="87" column="35" lean-forward="true" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1087,15 +1106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/entity/Recipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49">
-          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1103,7 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1119,7 +1128,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="57" lean-forward="false" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1127,7 +1135,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="80" lean-forward="true" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1135,7 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1151,7 +1157,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="67" lean-forward="false" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1163,10 +1168,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="117" column="51" lean-forward="false" selection-start-line="117" selection-start-column="51" selection-end-line="117" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recipe/details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="132" lean-forward="false" selection-start-line="34" selection-start-column="132" selection-end-line="34" selection-end-column="132" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/entity/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+          <folding>
+            <element signature="method#getSimpleName#0;class#Role#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/entity/Recipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-202">
+          <caret line="28" column="40" lean-forward="false" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/culinaryblog/contoller/RecipeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="260" column="38" lean-forward="false" selection-start-line="260" selection-start-column="38" selection-end-line="260" selection-end-column="38" />
+        <state relative-caret-position="544">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
             <element signature="method#create#0;class#RecipeController#0" expanded="false" />
             <element signature="method#createProcess#0;class#RecipeController#0" expanded="false" />
@@ -1174,20 +1215,16 @@
             <element signature="method#edit#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#delete#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#comment#0;class#RecipeController#0" expanded="false" />
             <element signature="method#commentProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editComment#0;class#RecipeController#0" expanded="false" />
             <element signature="method#editCommentProcess#0;class#RecipeController#0" expanded="false" />
             <element signature="method#deleteComment#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#deleteCommentProcess#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdmin#0;class#RecipeController#0" expanded="false" />
+            <element signature="method#isUserAuthorOrAdminComments#0;class#RecipeController#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/recipe/details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

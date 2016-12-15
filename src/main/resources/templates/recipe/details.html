@@ -12,7 +12,7 @@
                     <small class="author" th:text="${recipe.author.fullName}"></small>
 
                     <div class="pull-right">
-                        <th:block sec:authorize="isAuthenticated()">
+                        <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(recipe)}">
                             <a class="btn btn-default btn-xs " th:href="@{/recipe/comment/{id}(id = ${recipe.id})}">Comment</a>
                             <a class="btn btn-success btn-xs" th:href="@{/recipe/edit/{id}(id = ${recipe.id})}">Edit</a>
                             <a class="btn btn-danger btn-xs" th:href="@{/recipe/delete/{id}(id = ${recipe.id})}">Delete</a>
@@ -32,7 +32,7 @@
                                 <small class="author" th:text="${comment.author.fullName}"></small>
                             </div>
 
-                            <th:block sec:authorize="isAuthenticated()">
+                            <th:block sec:authorize="isAuthenticated()"  th:if="${user.isAdmin() OR user.isAuthorComment(comment)}">
                             <a class="btn btn-success btn-xs" th:href="@{/recipe/editComment/{id}(id = ${comment.id})}">Edit</a>
                             <a class="btn btn-danger btn-xs" th:href="@{/recipe/deleteComment/{id}(id = ${comment.id})}">Delete</a>
                             </th:block>
