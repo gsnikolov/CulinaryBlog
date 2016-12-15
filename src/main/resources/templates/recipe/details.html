@@ -15,8 +15,7 @@
                         <th:block sec:authorize="isAuthenticated()">
                             <a class="btn btn-default btn-xs " th:href="@{/recipe/comment/{id}(id = ${recipe.id})}">Comment</a>
                             <a class="btn btn-success btn-xs" th:href="@{/recipe/edit/{id}(id = ${recipe.id})}">Edit</a>
-                            <a class="btn btn-danger btn-xs"
-                               th:href="@{/recipe/delete/{id}(id = ${recipe.id})}">Delete</a>
+                            <a class="btn btn-danger btn-xs" th:href="@{/recipe/delete/{id}(id = ${recipe.id})}">Delete</a>
                         </th:block>
                         <a class="btn btn-default btn-xs" th:href="@{/}">back &raquo;</a>
                     </div>
@@ -32,7 +31,14 @@
                                 <p th:text="${comment.content}"></p>
                                 <small class="author" th:text="${comment.author.fullName}"></small>
                             </div>
+
+                            <th:block sec:authorize="isAuthenticated()">
+                            <a class="btn btn-success btn-xs" th:href="@{/recipe/editComment/{id}(id = ${comment.id})}">Edit</a>
+                            <a class="btn btn-danger btn-xs" th:href="@{/recipe/deleteComment/{id}(id = ${comment.id})}">Delete</a>
+                            </th:block>
+
                         </th:block>
+
                     </div>
                 </div>
 

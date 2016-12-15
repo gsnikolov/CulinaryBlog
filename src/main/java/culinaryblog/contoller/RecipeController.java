@@ -207,6 +207,70 @@ public class RecipeController {
         return "redirect:/";
     }
 
+    @GetMapping("/recipe/editComment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String editComment(Model model, @PathVariable Integer id){
+
+        if ( !this.commentRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Comment comment = commentRepository.findOne(id);
+
+        model.addAttribute("comment", comment);
+        model.addAttribute("view", "recipe/editComment");
+
+        return "base-layout";
+    }
+
+    @PostMapping("/recipe/editComment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String editCommentProcess(@PathVariable Integer id, CommentBindingModel commentBindingModel ){
+
+        if ( !this.commentRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Comment comment = this.commentRepository.findOne(id);
+
+        comment.setContent(commentBindingModel.getContent());
+
+        this.commentRepository.saveAndFlush(comment);
+
+        return "redirect:/";
+
+    }
+
+    @GetMapping("/recipe/deleteComment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String deleteComment(Model model, @PathVariable Integer id){
+
+        if ( !this.commentRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Comment comment = commentRepository.findOne(id);
+
+        model.addAttribute("comment", comment);
+        model.addAttribute("view", "recipe/deleteComment");
+
+        return "base-layout";
+    }
+
+    @PostMapping("/recipe/deleteComment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String deleteCommentProcess(CommentBindingModel commentBindingModel, @PathVariable Integer id){
+
+        if (!this.commentRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Comment comment = commentRepository.findOne(id);
+
+        this.commentRepository.delete(comment);
+
+        return "redirect:/";
+    }
 
 
 

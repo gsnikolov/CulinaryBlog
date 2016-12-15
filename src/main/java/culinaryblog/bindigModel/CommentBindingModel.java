@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 public class CommentBindingModel {
 
-    @NotNull
+
     private String content;
 
 
@@ -19,8 +19,6 @@ public class CommentBindingModel {
     public void setContent(String content) {
         this.content = content;
     }
-
-
 
 
 }
