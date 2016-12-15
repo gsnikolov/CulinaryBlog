@@ -1,5 +1,7 @@
 package culinaryblog.contoller;
 
+import com.sun.javafx.sg.prism.NGShape;
+import culinaryblog.bindigModel.CommentBindingModel;
 import culinaryblog.bindigModel.RecipeBindingModel;
 import culinaryblog.entity.Comment;
 import culinaryblog.entity.Recipe;
@@ -148,5 +150,56 @@ public class RecipeController {
         return "redirect:/";
 
     }
+
+    @GetMapping("/recipe/comment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String comment(Model model, @PathVariable Integer id){
+
+        if (!this.recipeRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        Recipe recipe = this.recipeRepository.findOne(id);
+
+
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("view", "recipe/comment");
+
+        return "base-layout";
+    }
+
+    @PostMapping("/recipe/comment/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String commentProcess(CommentBindingModel commentBindingModel, @PathVariable Integer id){
+
+        if (!this.recipeRepository.exists(id)){
+            return "redirect:/";
+        }
+
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User userEntity = this.userRepository.findByEmail(user.getUsername());
+
+        Recipe recipe = this.recipeRepository.findOne(id);
+
+
+        Comment commentEntity = new Comment(
+
+                commentBindingModel.getContent(),
+                userEntity,
+                recipe
+        );
+
+        this.commentRepository.saveAndFlush(commentEntity);
+
+        return "redirect:/";
+    }
+
+
+
+
+
+
 
 }

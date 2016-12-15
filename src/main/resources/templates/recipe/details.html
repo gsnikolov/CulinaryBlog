@@ -13,7 +13,7 @@
 
                     <div class="pull-right">
                         <th:block sec:authorize="isAuthenticated()">
-                            <a class="btn btn-default btn-xs " th:href="@{/comment/create}">Comment</a>
+                            <a class="btn btn-default btn-xs " th:href="@{/recipe/comment/{id}(id = ${recipe.id})}">Comment</a>
                             <a class="btn btn-success btn-xs" th:href="@{/recipe/edit/{id}(id = ${recipe.id})}">Edit</a>
                             <a class="btn btn-danger btn-xs"
                                th:href="@{/recipe/delete/{id}(id = ${recipe.id})}">Delete</a>
@@ -35,6 +35,7 @@
                         </th:block>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

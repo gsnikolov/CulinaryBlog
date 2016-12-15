@@ -1,7 +1,7 @@
 <main>
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form class="form-horizontal" th:action="@{/comment/create}" method="POST">
+            <form class="form-horizontal" th:action="@{/recipe/comment/{id}(id=${recipe.id})}" method="POST">
                 <fieldset>
                     <legend>Write Comment</legend>
 
@@ -14,7 +14,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" th:href="@{/}">Cancel</a>
+                            <a class="btn btn-default" th:href="@{/recipe/{id}(id = ${recipe.id})}">Cancel</a>
                             <input type="submit" class="btn btn-primary" value="Sent"/>
                         </div>
                     </div>

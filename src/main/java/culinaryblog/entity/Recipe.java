@@ -17,6 +17,8 @@ public class Recipe {
 
     private User author;
 
+    private Set<Comment> comments;
+
 
 
     public Recipe(String title, String content, User author) {
@@ -24,6 +26,7 @@ public class Recipe {
         this.content = content;
         this.author = author;
 
+        this.comments = new HashSet<>();
     }
 
     public Recipe() {
@@ -65,6 +68,15 @@ public class Recipe {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    @OneToMany(mappedBy = "recipe")
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     @Transient

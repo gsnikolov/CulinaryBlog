@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -32,37 +33,13 @@ public class CommentController {
 
     @GetMapping("/comment/create")
     @PreAuthorize("isAuthenticated()")
-    public String create(Model model){
+    public String create(Model model) {
 
         model.addAttribute("view", "comment/create");
 
         return "base-layout";
 
     }
-
-    @PostMapping("/comment/create")
-    @PreAuthorize("isAuthenticated()")
-    public String createProcess(CommentBindingModel commentBindingModel){
-
-        UserDetails user = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-
-        User userEntity = this.userRepository.findByEmail(user.getUsername());
-
-
-        Comment commentEntity = new Comment(
-                commentBindingModel.getContent(),
-                userEntity
-        );
-
-
-        this.commentRepository.saveAndFlush(commentEntity);
-
-        return "redirect:/";
-
-    }
-
-
 
 
 }
