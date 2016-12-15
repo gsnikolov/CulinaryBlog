@@ -1,6 +1,6 @@
 package culinaryblog.contoller;
 
-import com.sun.javafx.sg.prism.NGShape;
+
 import culinaryblog.bindigModel.CommentBindingModel;
 import culinaryblog.bindigModel.RecipeBindingModel;
 import culinaryblog.entity.Comment;
@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 @Controller
@@ -72,8 +74,17 @@ public class RecipeController {
 
         Recipe recipe = this.recipeRepository.findOne(id);
 
-        List<Comment> comments = this.commentRepository.findAll();
+        List<Comment> allComments = this.commentRepository.findAll();
 
+        ArrayList<Comment> comments = new ArrayList<>();
+
+        for ( Comment comment : allComments) {
+
+            if (comment.getRecipe() == recipe){
+
+                comments.add(comment);
+            }
+        }
 
 
         model.addAttribute("recipe", recipe);
