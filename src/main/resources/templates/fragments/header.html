@@ -16,10 +16,11 @@
                     <li class="dropdown" sec:authorize="hasRole('ADMIN')">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Categories</a></li>
+                            <li><a th:href="@{/admin/categories/}">Categories</a></li>
                             <li><a th:href="@{/admin/users/}">Users</a></li>
                         </ul>
                     </li>
+
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/profile}">
                             Hello Chef

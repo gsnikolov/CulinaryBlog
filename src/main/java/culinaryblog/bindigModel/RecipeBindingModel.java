@@ -11,6 +11,8 @@ public class RecipeBindingModel {
     @NotNull
     private String content;
 
+    private Integer categoryId;
+
     public String getTitle() {
         return title;
     }
@@ -25,5 +27,13 @@ public class RecipeBindingModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }

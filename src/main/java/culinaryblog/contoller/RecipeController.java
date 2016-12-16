@@ -3,9 +3,11 @@ package culinaryblog.contoller;
 
 import culinaryblog.bindigModel.CommentBindingModel;
 import culinaryblog.bindigModel.RecipeBindingModel;
+import culinaryblog.entity.Category;
 import culinaryblog.entity.Comment;
 import culinaryblog.entity.Recipe;
 import culinaryblog.entity.User;
+import culinaryblog.repository.CategoryRepository;
 import culinaryblog.repository.CommentRepository;
 import culinaryblog.repository.RecipeRepository;
 import culinaryblog.repository.UserRepository;
@@ -37,10 +39,16 @@ public class RecipeController {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @GetMapping("/recipe/create")
     @PreAuthorize("isAuthenticated()")
     public String create(Model model){
 
+        List<Category> categories = this.categoryRepository.findAll();
+
+        model.addAttribute("categories", categories);
         model.addAttribute("view", "recipe/create");
 
         return "base-layout";
@@ -54,11 +62,13 @@ public class RecipeController {
                 .getAuthentication().getPrincipal();
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
+        Category category = this.categoryRepository.findOne(recipeBindingModel.getCategoryId());
 
         Recipe recipeEntity = new Recipe(
                 recipeBindingModel.getTitle(),
                 recipeBindingModel.getContent(),
-                userEntity
+                userEntity,
+                category
         );
 
         this.recipeRepository.saveAndFlush(recipeEntity);

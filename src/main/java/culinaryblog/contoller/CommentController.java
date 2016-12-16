@@ -30,8 +30,6 @@ public class CommentController {
     private CommentRepository commentRepository;
 
 
-
-
     @GetMapping("/recipe/comment/create/{id}")
     @PreAuthorize("isAuthenticated()")
     public String comment(Model model, @PathVariable Integer id){
@@ -86,15 +84,17 @@ public class CommentController {
         }
 
         Comment comment = commentRepository.findOne(id);
+        Integer recipe = comment.getRecipe().getId();
 
 
         if (!isUserAuthorOrAdminComments(comment)){
 
-            return "redirect:/recipe/" + id;
+            return "redirect:/recipe/" + comment.getRecipe().getId();
 
         }
 
 
+        model.addAttribute("recipe", recipe);
         model.addAttribute("comment", comment);
         model.addAttribute("view", "recipe/comment/edit");
 
@@ -113,7 +113,7 @@ public class CommentController {
 
         if (!isUserAuthorOrAdminComments(comment)){
 
-            return "redirect:/recipe/" + id;
+            return "redirect:/recipe/" + comment.getRecipe().getId();
 
         }
 
@@ -121,7 +121,7 @@ public class CommentController {
 
         this.commentRepository.saveAndFlush(comment);
 
-        return "redirect:/recipe/" + id;
+        return "redirect:/recipe/" + comment.getRecipe().getId();
 
     }
 
@@ -135,12 +135,15 @@ public class CommentController {
 
         Comment comment = commentRepository.findOne(id);
 
+        Integer recipe = comment.getRecipe().getId();
+
         if (!isUserAuthorOrAdminComments(comment)){
 
             return "redirect:/recipe/" + id;
 
         }
 
+        model.addAttribute("recipe", recipe);
         model.addAttribute("comment", comment);
         model.addAttribute("view", "recipe/comment/delete");
 
@@ -159,15 +162,14 @@ public class CommentController {
 
         if (!isUserAuthorOrAdminComments(comment)){
 
-            return "redirect:/recipe/" + id;
+            return "redirect:/recipe/" + comment.getRecipe().getId();
 
         }
 
         this.commentRepository.delete(comment);
 
-        return "redirect:/recipe/" + id;
+        return "redirect:/recipe/" + comment.getRecipe().getId();
     }
-
 
     private  boolean isUserAuthorOrAdminComments(Comment comment){
 

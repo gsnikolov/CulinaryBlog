@@ -17,14 +17,17 @@ public class Recipe {
 
     private User author;
 
+    private Category category;
+
     private Set<Comment> comments;
 
 
 
-    public Recipe(String title, String content, User author) {
+    public Recipe(String title, String content, User author, Category category) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.category = category;
 
         this.comments = new HashSet<>();
     }
@@ -77,6 +80,16 @@ public class Recipe {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    @ManyToOne()
+    @JoinColumn(nullable = false, name = "categoryId")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Transient
