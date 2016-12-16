@@ -194,6 +194,11 @@ public class RecipeController {
 
         }
 
+        for (Comment comment : recipe.getComments()) {
+
+            this.commentRepository.delete(comment);
+        }
+
         this.recipeRepository.delete(recipe);
 
         return "redirect:/";

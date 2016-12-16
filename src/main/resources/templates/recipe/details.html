@@ -12,10 +12,12 @@
                     <small class="author" th:text="${recipe.author.fullName}"></small>
 
                     <div class="pull-right">
-                        <th:block sec:authorize="isAuthenticated()" th:if="${user.isAdmin() OR user.isAuthor(recipe)}">
+                        <th:block sec:authorize="isAuthenticated()">
                             <a class="btn btn-default btn-xs " th:href="@{/recipe/comment/{id}(id = ${recipe.id})}">Comment</a>
+                            <th:block th:if="${user.isAdmin() OR user.isAuthor(recipe)}">
                             <a class="btn btn-success btn-xs" th:href="@{/recipe/edit/{id}(id = ${recipe.id})}">Edit</a>
                             <a class="btn btn-danger btn-xs" th:href="@{/recipe/delete/{id}(id = ${recipe.id})}">Delete</a>
+                            </th:block>
                         </th:block>
                         <a class="btn btn-default btn-xs" th:href="@{/}">back &raquo;</a>
                     </div>
