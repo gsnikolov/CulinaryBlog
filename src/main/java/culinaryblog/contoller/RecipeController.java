@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -59,6 +60,9 @@ public class RecipeController {
         UserDetails user = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
+        String urlVideo = getUrl(recipeBindingModel.getUrlVideo());
+
+
         User userEntity = this.userRepository.findByEmail(user.getUsername());
         Category category = this.categoryRepository.findOne(recipeBindingModel.getCategoryId());
         HashSet<Tag> tags = this.findTagsFromString(recipeBindingModel.getTagString());
@@ -68,7 +72,10 @@ public class RecipeController {
                 recipeBindingModel.getContent(),
                 userEntity,
                 category,
-                tags
+                tags,
+                urlVideo
+
+
         );
 
         this.recipeRepository.saveAndFlush(recipeEntity);
@@ -260,6 +267,15 @@ public class RecipeController {
 
         return userEntity.isAdmin() || userEntity.isAuthor(recipe);
 
+    }
+
+    private String getUrl(String urlVideo){
+
+        String[] allUrl = urlVideo.split("=");
+
+        String result = allUrl[1];
+
+        return result;
     }
 
 }

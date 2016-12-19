@@ -11,6 +11,8 @@ public class RecipeBindingModel {
     @NotNull
     private String content;
 
+    private String urlVideo;
+
     private Integer categoryId;
 
     private String tagString;
@@ -45,5 +47,13 @@ public class RecipeBindingModel {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    public void setUrlVideo(String urlVideo) {
+        this.urlVideo = urlVideo;
     }
 }

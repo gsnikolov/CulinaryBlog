@@ -15,6 +15,8 @@ public class Recipe {
 
     private String content;
 
+    private String urlVideo;
+
     private User author;
 
     private Category category;
@@ -25,12 +27,13 @@ public class Recipe {
 
 
 
-    public Recipe(String title, String content, User author, Category category, HashSet<Tag> tags) {
+    public Recipe(String title, String content, User author, Category category, HashSet<Tag> tags, String urlVideo) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.category = category;
         this.tags = tags;
+        this.urlVideo = urlVideo;
         this.comments = new HashSet<>();
     }
 
@@ -63,6 +66,15 @@ public class Recipe {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Column(columnDefinition = "text", nullable = false)
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    public void setUrlVideo(String urlVideo) {
+        this.urlVideo = urlVideo;
     }
 
     @ManyToOne()
