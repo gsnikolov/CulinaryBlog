@@ -18,6 +18,23 @@
                             <textarea class="form-control" rows="6" id="recipe_content" name="content" th:field="${recipe.content}"></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="recipe_category">Category</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="recipe_category" name="categoryId">
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"  th:selected="${category.id == recipe.category.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="recipe_tags">Tags</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="recipe_tags" placeholder="Tags" name="tagString" th:value="${tags}"/>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">

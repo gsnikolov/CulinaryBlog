@@ -21,9 +21,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-4 control-label" for="recipe_tags">Tags</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="recipe_tags" placeholder="Tags" name="tagString"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <label class="col-sm-4 control-label" for="recipe_category">Category</label>
                         <div class="col-sm-6">
-                            <select class="form-control" id="article_category" name="categoryId">
+                            <select class="form-control" id="recipe_category" name="categoryId">
                                 <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                             </select>
                         </div>

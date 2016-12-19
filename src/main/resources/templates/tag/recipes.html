@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<main>
+    <div class="container body-content">
+        <h1>Search by Tag - <th:block th:text="${tag.name}"></th:block></h1>
+        <div class="row">
+            <th:block th:each="recipe : ${tag.recipes}">
+                <div class="col-md-6">
+                    <article>
+                        <header>
+                            <h2 th:text="${recipe.title}"></h2>
+                        </header>
+
+                        <p th:text="${recipe.summery}"></p>
+
+                        <small class="author" th:text="${recipe.author.fullName}"></small>
+
+                        <p>
+                            <a class="btn btn-default btn-xs" th:each="tag:${recipe.tags}" th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                        </p>
+
+
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs"
+                                   th:href="@{/recipe/{id}(id=${ recipe.id})}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>

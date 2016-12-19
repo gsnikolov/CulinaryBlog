@@ -13,6 +13,8 @@ public class RecipeBindingModel {
 
     private Integer categoryId;
 
+    private String tagString;
+
     public String getTitle() {
         return title;
     }
@@ -31,6 +33,14 @@ public class RecipeBindingModel {
 
     public Integer getCategoryId() {
         return categoryId;
+    }
+
+    public String getTagString() {
+        return tagString;
+    }
+
+    public void setTagString(String tagString) {
+        this.tagString = tagString;
     }
 
     public void setCategoryId(Integer categoryId) {

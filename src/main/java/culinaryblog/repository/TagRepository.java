@@ -1,7 +1,10 @@
 package culinaryblog.repository;
 
-/**
- * Created by GN on 19.12.2016 г..
- */
-public interface TagRepository {
+
+import culinaryblog.entity.Tag;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TagRepository extends JpaRepository<Tag, Integer> {
+
+    Tag findByName(String name);
 }

@@ -3,14 +3,8 @@ package culinaryblog.contoller;
 
 import culinaryblog.bindigModel.CommentBindingModel;
 import culinaryblog.bindigModel.RecipeBindingModel;
-import culinaryblog.entity.Category;
-import culinaryblog.entity.Comment;
-import culinaryblog.entity.Recipe;
-import culinaryblog.entity.User;
-import culinaryblog.repository.CategoryRepository;
-import culinaryblog.repository.CommentRepository;
-import culinaryblog.repository.RecipeRepository;
-import culinaryblog.repository.UserRepository;
+import culinaryblog.entity.*;
+import culinaryblog.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -23,8 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -41,6 +36,9 @@ public class RecipeController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
     @GetMapping("/recipe/create")
     @PreAuthorize("isAuthenticated()")
@@ -63,12 +61,14 @@ public class RecipeController {
 
         User userEntity = this.userRepository.findByEmail(user.getUsername());
         Category category = this.categoryRepository.findOne(recipeBindingModel.getCategoryId());
+        HashSet<Tag> tags = this.findTagsFromString(recipeBindingModel.getTagString());
 
         Recipe recipeEntity = new Recipe(
                 recipeBindingModel.getTitle(),
                 recipeBindingModel.getContent(),
                 userEntity,
-                category
+                category,
+                tags
         );
 
         this.recipeRepository.saveAndFlush(recipeEntity);
@@ -127,12 +127,22 @@ public class RecipeController {
 
         Recipe recipe = this.recipeRepository.findOne(id);
 
+        List<Category> categories = this.categoryRepository.findAll();
+
+
+
+        String tagString = recipe.getTags().stream()
+                .map(Tag::getName)
+                .collect(Collectors.joining(", "));
+
         if (!isUserAuthorOrAdmin(recipe)){
 
             return "redirect:/recipe/" + id;
 
         }
 
+        model.addAttribute("tags", tagString);
+        model.addAttribute("categories", categories);
         model.addAttribute("recipe", recipe);
         model.addAttribute("view", "recipe/edit");
 
@@ -156,8 +166,13 @@ public class RecipeController {
 
         }
 
+        Category category =this.categoryRepository.findOne(recipeBindingModel.getCategoryId());
+        HashSet<Tag> tags = this.findTagsFromString(recipeBindingModel.getTagString());
+
+        recipe.setCategory(category);
         recipe.setContent(recipeBindingModel.getContent());
         recipe.setTitle(recipeBindingModel.getTitle());
+        recipe.setTags(tags);
 
         this.recipeRepository.saveAndFlush(recipe);
 
@@ -215,6 +230,26 @@ public class RecipeController {
 
     }
 
+    public HashSet<Tag> findTagsFromString(String tagString) {
+        HashSet<Tag> tags = new HashSet<>();
+
+        String[] tagNames = tagString.split(",\\s*");
+
+        for (String tagName : tagNames) {
+
+            Tag currentTag = this.tagRepository.findByName(tagName);
+
+            if (currentTag == null) {
+
+                currentTag = new Tag(tagName);
+                this.tagRepository.saveAndFlush(currentTag);
+            }
+            tags.add(currentTag);
+        }
+
+        return tags;
+    }
+
 
     private  boolean isUserAuthorOrAdmin(Recipe recipe){
 
@@ -226,12 +261,5 @@ public class RecipeController {
         return userEntity.isAdmin() || userEntity.isAuthor(recipe);
 
     }
-
-
-
-
-
-
-
 
 }

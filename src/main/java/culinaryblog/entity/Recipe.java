@@ -21,14 +21,16 @@ public class Recipe {
 
     private Set<Comment> comments;
 
+    private Set<Tag> tags;
 
 
-    public Recipe(String title, String content, User author, Category category) {
+
+    public Recipe(String title, String content, User author, Category category, HashSet<Tag> tags) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.category = category;
-
+        this.tags = tags;
         this.comments = new HashSet<>();
     }
 
@@ -90,6 +92,16 @@ public class Recipe {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @ManyToMany()
+    @JoinColumn(table = "recipe_tags")
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Transient
