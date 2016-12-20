@@ -8,22 +8,32 @@
                     </header>
 
                     <p>
-                    <iframe width="560" height="315" th:src="@{https://www.youtube.com/embed/{url}(url=${recipe.urlVideo})}" frameborder="0"></iframe>
+                        <iframe width="560" height="315"
+                                th:src="@{https://www.youtube.com/embed/{url}(url=${recipe.urlVideo})}"
+                                frameborder="0"></iframe>
                     </p>
 
-                    <h5 th:text="${recipe.content}"></h5>
+                    <div class="container">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <h4>Recipe</h4>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" rows="6" id="recipe_content" name="content" th:field="${recipe.content}" disabled="disabled"></textarea>
 
-                    <small class="author" th:text="${recipe.author.fullName}"></small>
-
-                    <p>
-                        <a class="btn btn-default btn-xs" th:each="tag:${recipe.tags}"
-                           th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
-                    </p>
+                                    <h3 class="author" th:text="${recipe.author.fullName}"></h3>
+                                    <p>
+                                        <a class="btn btn-info" th:each="tag:${recipe.tags}"
+                                           th:href="@{/tag/{name}(name=${tag.name})}" th:text="${tag.name}"></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="pull-right">
                         <th:block sec:authorize="isAuthenticated()">
-                            <a class="btn btn-default btn-xs "
+                            <a class="btn btn-primary btn-xs "
                                th:href="@{/recipe/comment/create/{id}(id = ${recipe.id})}">Comment</a>
                             <th:block th:if="${user.isAdmin() OR user.isAuthor(recipe)}">
                                 <a class="btn btn-success btn-xs"
